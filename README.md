@@ -1,2 +1,2 @@
-# chatgpt-cli
-A simple rust CLI for ChatGPT
+# uselessfacts-cli
+A simple CLI app to get random or daily useless facts from `https://uselessfacts.jsph.pl`
