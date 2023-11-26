@@ -7,7 +7,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let result = match fact_type.as_str() {
         "t" | "today" => get_daily_fact(),
         "r" | "random" => get_random_fact(),
-        _ => Err("invalid argument.")?,
+        _ => get_help(),
     };
     match result {
         Ok(fact) => print_fact(fact),
@@ -43,6 +43,12 @@ fn get_random_fact() -> Result<Fact, Box<dyn std::error::Error>> {
 fn get_daily_fact() -> Result<Fact, Box<dyn std::error::Error>> {
     let url = format!("{}{}", FACT_BASE_URL, FACT_DAILY);
     get_fact(&url)
+}
+
+fn get_help() -> Result<Fact, Box<dyn std::error::Error>> {
+    let mut fact = Fact::default();
+    fact.text = String::from("Usage: fact [t]oday | [r]andom");
+    Ok(fact)
 }
 
 fn print_fact(fact: Fact) {
